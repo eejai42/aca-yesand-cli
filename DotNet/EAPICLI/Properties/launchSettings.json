@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EAPICLI": {
+      "commandName": "Project",
+      "commandLineArgs": "getepisodecalls  -maxpages 3 -view test"
+    }
+  }
+}
