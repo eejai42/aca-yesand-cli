@@ -66,6 +66,10 @@ namespace EAPI.CLI.Lib.DataClasses
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "ChosenName")]
         public String ChosenName { get; set; }
     
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CallSubject")]
+        [RemoteIsCollection]
+        public String CallSubject { get; set; }
+    
 
         
 

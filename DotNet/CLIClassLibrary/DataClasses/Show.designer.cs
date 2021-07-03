@@ -47,6 +47,22 @@ namespace EAPI.CLI.Lib.DataClasses
         [RemoteIsCollection]
         public String[] ShowSeasons { get; set; }
     
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CurrentSeason")]
+        [RemoteIsCollection]
+        public String CurrentSeason { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CurrentSeasonNumber")]
+        [RemoteIsCollection]
+        public Nullable<Int32> CurrentSeasonNumber { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "LastEpisodeNumber")]
+        [RemoteIsCollection]
+        public Nullable<Int32> LastEpisodeNumber { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "NextEpisodeNumber")]
+        [RemoteIsCollection]
+        public Nullable<Int32> NextEpisodeNumber { get; set; }
+    
 
         
 

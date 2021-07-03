@@ -1,14 +1,81 @@
 function MainMenu() {
     LoadGlobals;
-    Write-Host("1. Open Call")
-    Write-Host("2. Start Call")
-    $option = Read-Host("What do you want to do?")
-    if ($option -eq "1") {
-        $call = OpenCall
-        $call|convertto-json
-    } elseif ($option -eq "2") {
-        StartCall
+    Write-Host("1. Pick Show");
+    if ($global:show -ne $null) {
+
+        Write-Host "SHOW: " $global:show.Name ""
+        Write-Host "2. Start Next Episode"        
+        Write-Host "3. Open Episode"
+        if ($global:episode -ne $null) {
+            Write-Host "EPISODE: " $global:episode.Name ""
+            Write-Host "4. Start Call"
+            Write-Host "5. Open Call"
+            Write-Host "6. Manage Hosts"
+            if ($global:call -ne $null) {
+                Write-Host "CALL: " $global:call.Name ""
+                Write-Host "7. Navigate Call"
+                Write-Host "8. Manage Participants"
+            }
+        }
+        $option = Read-Host("What do you want to do?")
+    } else {
+        $option = "1"
     }
+    if ($option -eq "1") {
+        $global:show = ChooseShow
+        MainMenu
+    } elseif ($option -eq "2") {
+        $global:episode = StartNextEpisode $global:show
+        MainMenu
+    } elseif ($option -eq "3") {
+        $global:episode = OpenEpisode $global:show
+        MainMenu
+    } elseif ($option -eq "4") {
+        $global:call = StartCall $global:episode
+        MainMenu
+    } elseif ($option -eq "5") {
+        $global:call = OpenCall $global:episode
+        MainMenu
+    } elseif ($option -eq "6") {
+        $global:call = ManageHosts $global:episode
+        MainMenu
+    } elseif ($option -eq "7") {
+        $global:call = NaviateCall $global:call
+        MainMenu
+    } elseif ($option -eq "8") {
+        DoNothing
+        MainMenu
+    }
+}
+
+function StartNextEpisode($show) {
+    $payload = @{
+        SeasonEpisode = @{
+            ShowSeason = $show.CurrentSeason;
+            EpisodeNumber = $show.NextEpisodeNumber;
+        }
+    }
+    $payload|convertto-json|Out-file ./payload.json
+    $reply = yesand AddSeasonEpisode -bodyfile ./payload.json|ConvertFrom-Json
+    $episode = $reply.SeasonEpisode
+    $episode|Out-Host
+    return $episode    
+}
+
+function ChooseShow() {
+    $reply = yesand getshows|convertfrom-json;
+    if (HasNoErrors($reply)) {
+        $reply.Shows|select Name|format-table|Out-Host;
+    }
+    $showString = Read-Host "Which show would you like to start?";
+    $showInt = [int]$showString;
+    $show = $reply.Shows[$showInt - 1]
+    $show|convertto-json|Out-Host
+    return $show
+}
+
+function DoNothing() {
+    Write-Host "DOING NOTHING"
 }
 
 function OpenCall() {
@@ -24,7 +91,7 @@ function OpenCall() {
     }
 }
 
-function StartCall() {
+function StartCall($show) {
     $subject = Read-Host("Call Subject?")
     $call = CreateCall($subject)
     Write-Host("Details")
@@ -114,5 +181,9 @@ function LoadGlobals() {
         $global:hosts = $payload.People
     }
 }
+
+$global:show = $null
+$global:episode = $null
+$global:call = $null
 
 MainMenu

@@ -1022,6 +1022,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - TopicAgreement");
                     sb.AppendLine($"CRUD      - DisplayName");
                     sb.AppendLine($"CRUD      - ChosenName");
+                    sb.AppendLine($"CRUD      - CallSubject");
                 
             
         }
@@ -1049,6 +1050,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - TopicAgreement");
                     sb.AppendLine($"CRUD      - DisplayName");
                     sb.AppendLine($"CRUD      - ChosenName");
+                    sb.AppendLine($"CRUD      - CallSubject");
                 
             
         }
@@ -1076,6 +1078,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - TopicAgreement");
                     sb.AppendLine($"CRUD      - DisplayName");
                     sb.AppendLine($"CRUD      - ChosenName");
+                    sb.AppendLine($"CRUD      - CallSubject");
                 
             
         }
@@ -1190,6 +1193,10 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - SeasonEpisodes");
                     sb.AppendLine($"CRUD      - ShowStartDate");
                     sb.AppendLine($"CRUD      - SeasonYear");
+                    sb.AppendLine($"CRUD      - Shows");
+                    sb.AppendLine($"CRUD      - LastEpisode");
+                    sb.AppendLine($"CRUD      - LastEpisodeNumber");
+                    sb.AppendLine($"CRUD      - NextEpisodeNumber");
                 
             
         }
@@ -1216,6 +1223,10 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - SeasonEpisodes");
                     sb.AppendLine($"CRUD      - ShowStartDate");
                     sb.AppendLine($"CRUD      - SeasonYear");
+                    sb.AppendLine($"CRUD      - Shows");
+                    sb.AppendLine($"CRUD      - LastEpisode");
+                    sb.AppendLine($"CRUD      - LastEpisodeNumber");
+                    sb.AppendLine($"CRUD      - NextEpisodeNumber");
                 
             
         }
@@ -1242,6 +1253,10 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - SeasonEpisodes");
                     sb.AppendLine($"CRUD      - ShowStartDate");
                     sb.AppendLine($"CRUD      - SeasonYear");
+                    sb.AppendLine($"CRUD      - Shows");
+                    sb.AppendLine($"CRUD      - LastEpisode");
+                    sb.AppendLine($"CRUD      - LastEpisodeNumber");
+                    sb.AppendLine($"CRUD      - NextEpisodeNumber");
                 
             
         }
@@ -1269,6 +1284,10 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - ShowCode");
                     sb.AppendLine($"CRUD      - StartDate");
                     sb.AppendLine($"CRUD      - ShowSeasons");
+                    sb.AppendLine($"CRUD      - CurrentSeason");
+                    sb.AppendLine($"CRUD      - CurrentSeasonNumber");
+                    sb.AppendLine($"CRUD      - LastEpisodeNumber");
+                    sb.AppendLine($"CRUD      - NextEpisodeNumber");
                 
             
         }
@@ -1291,6 +1310,10 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - ShowCode");
                     sb.AppendLine($"CRUD      - StartDate");
                     sb.AppendLine($"CRUD      - ShowSeasons");
+                    sb.AppendLine($"CRUD      - CurrentSeason");
+                    sb.AppendLine($"CRUD      - CurrentSeasonNumber");
+                    sb.AppendLine($"CRUD      - LastEpisodeNumber");
+                    sb.AppendLine($"CRUD      - NextEpisodeNumber");
                 
             
         }
@@ -1313,6 +1336,10 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - ShowCode");
                     sb.AppendLine($"CRUD      - StartDate");
                     sb.AppendLine($"CRUD      - ShowSeasons");
+                    sb.AppendLine($"CRUD      - CurrentSeason");
+                    sb.AppendLine($"CRUD      - CurrentSeasonNumber");
+                    sb.AppendLine($"CRUD      - LastEpisodeNumber");
+                    sb.AppendLine($"CRUD      - NextEpisodeNumber");
                 
             
         }
@@ -1347,6 +1374,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - EpisodeCalls");
                     sb.AppendLine($"CRUD      - LongName");
                     sb.AppendLine($"CRUD      - ShortName");
+                    sb.AppendLine($"CRUD      - EpisodeCallCount");
                 
             
         }
@@ -1376,6 +1404,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - EpisodeCalls");
                     sb.AppendLine($"CRUD      - LongName");
                     sb.AppendLine($"CRUD      - ShortName");
+                    sb.AppendLine($"CRUD      - EpisodeCallCount");
                 
             
         }
@@ -1405,6 +1434,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - EpisodeCalls");
                     sb.AppendLine($"CRUD      - LongName");
                     sb.AppendLine($"CRUD      - ShortName");
+                    sb.AppendLine($"CRUD      - EpisodeCallCount");
                 
             
         }
