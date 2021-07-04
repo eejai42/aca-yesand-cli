@@ -49,42 +49,74 @@ function MainMenu() {
     }
 }
 
+
 function NavigateCall($call) {
     Write-Host "`n`nNavigating call"
-    $reply = yesand GetCallTopics -where "$('"')EpisodeCall='$($call.Name)'$('"')" -view TopicList|ConvertFrom-Json
+    LoadTopics $call
+    LoadParticipants $call
+
+    $result = ""
+    while ($result -ne "x") {
+        PrintCallMenu $call
+        $result = Read-Host("Navigate forward")
+        if ($result[0] -eq "1") {
+            SetSpeaker $call 1
+        }
+        elseif ($result[0] -eq "2") {
+            SetSpeaker $call 2
+        }
+        elseif ($result[0] -eq "3") {
+            SetSpeaker $call 3
+        }
+        elseif ($result[0] -eq "4") {
+            SetAgreement $call 1
+        }
+        elseif ($result[0] -eq "5") {
+            SetAgreement $call 2
+        }
+        elseif ($result[0] -eq "6") {
+            SetAgreement $call 3
+        }
+        elseif ($result[0] -eq "p") {
+            SelectParentTopic $call
+        }
+        elseif ($result[0] -eq "s" -and $result.length -lt 4) {
+            SelectSubTopic $call $result.Substring(1, $result.length - 1)
+        }
+        elseif ($result.length -gt 1) {
+            AddSubTopic $call $result
+        }
+    }
+}
+
+function LoadTopics($call) {
+    $reply = yesand GetCallTopics -where "$('"')EpisodeCall='$($call.Name)'$('"')" -view TopicList | ConvertFrom-Json
     if (HasNoErrors($reply)) {
-        $topics = $reply.CallTopics;
-        $topics|Out-Host
+        $topics = [System.Collections.ArrayList]$reply.CallTopics;
         if ($topics.length -lt 1) {
             $topic = AddTopic $call $null $call.Subject
             $topics.Add($topic)
         }
-        $topics|format-table|Out-Host        
-        $global:topics = [System.Collections.ArrayList]$topics
-        $global:currentTopic = $global:topics|where ParentTopic -eq $null|select -first 1
-
-        
-        $global:currentTopic|convertto-json|Out-Host
-
-        $result = ""
-        while ($result -ne "x") {
-            PrintCallMenu $call
-            $result = Read-Host("Navigate forward")
-            if ($result[0] -eq "p") {
-                SelectParentTopic $call
-            } elseif ($result[0] -eq "a") {
-                AddSubTopic $call $result.Substring(1, $result.length - 1)
-            } elseif ($result[0] -eq "s") {
-                SelectSubTopic $call $result.Substring(1, $result.length - 1)
-            }
-        }
+        $topics | format-table | Out-Host
+        $global:topics = $topics
     }
+    $global:currentTopic = $global:topics | where ParentTopic -eq $null | select -first 1
+}
+
+function LoadParticipants($call) {
+    $reply = yesand GetCallParticipants -where "$('"')EpisodeCall='$($call.Name)'$('"')" -view ParticipantList | ConvertFrom-Json
+    $reply|convertto-json|out-host
+    if (HasNoErrors($reply)) {
+        $participants = [System.Collections.ArrayList]$reply.CallParticipants;
+        $participants | format-table | Out-Host
+        $global:participants = $participants
+    }
+    $global:currentSpeaker = $global:participants | select -first 1    
 }
 
 function SelectParentTopic($call) {
     Write-Host "`n`nSelecting Parent Topic...."
     $subTopics = $global:topics|where CallTopicId -eq $global:currentTopic.ParentTopic;
-    $subTopics|format-table|Out-Host
     $subTopicIndex = [int]$callId
     $selected = $subTopics[$subTopicIndex - 1]
     if ($selected -ne $null) {
@@ -93,7 +125,7 @@ function SelectParentTopic($call) {
 }
 
 function SelectSubTopic($call, $callId) {
-    Write-Host "`n`nSelecting Sub Topic...." $callId
+    Write-Host "`n`nSelecting Sub Topic...." $callId $global:currentTopic.CallTopicId
     $subTopics = $global:topics|where ParentTopic -eq $global:currentTopic.CallTopicId;
     $subTopics|format-table|Out-Host
     $subTopicIndex = [int]$callId
@@ -115,11 +147,7 @@ function AddSubTopic($call, $subject) {
     $reply = yesand AddCallTopic -bodyfile ./payload.json|convertfrom-json
     if (HasNoErrors($reply)) {
         $global:topics.Add($reply.CallTopic)
-        $reply|convertto-json|out-host
-        # $global:currentTopic = $reply.CallTopic;
     }
-
-    $global:topics|format-table|out-host
 }
 
 function AddTopic($call, $parentTopic, $subject) {
@@ -143,30 +171,43 @@ function AddTopic($call, $parentTopic, $subject) {
 }
 
 function PrintCallMenu($call) {    
-    $cur = $global:currentTopic;
-    Write-Host "SELECTING CURRENT ITEM: "
-    $cur|convertto-json|Out-Host
-    $parent = $global:topics|where CallTopicId -eq $cur.ParentTopic|select -first 1;
+    $parent = $global:topics|where CallTopicId -eq $global:currentTopic.ParentTopic|select -first 1;
     Write-Host "`n`n`nParent Topic: " $parent.Subject
-    Write-Host "   - Current-Topic" $cur.Subject
-    $subTopics = $global:topics|where ParentTopic -eq $cur.CallTopicId;
+    Write-Host "   - Current-Topic" $global:currentTopic.Subject
+    $subTopics = $global:topics|where ParentTopic -eq $global:currentTopic.CallTopicId;
     foreach ($topic in $subTopics) {
         Write-Host "         - Sub Item: " $topic.Subject
     }
 
+    Write-Host "`nCurrent Speaker:" $global:currentSpeaker.Name
+
+    Write-Host "`n`n"
+    Write-Host " 1,2,3 - Set Speaker"
+    Write-Host " 4,5,6 - Change Speaker Agreement"
+
+
     if ($parent -ne $null) {
-        Write-Host "`n`n p: SELECT PARENT TOPIC"
+        Write-Host " p: SELECT PARENT TOPIC"
     }
     Write-Host " a: ADD SUB TOPIC"
     Write-Host " s3: SELECT SUB TOPIC"
     Write-Host " x: CLOSE CALL NAVIGATATOR"
 }
 
+function SetSpeaker($call, $index) {
+    $global:currentSpeaker = $global:participants[$index -1];
+    Write-Host "`n`n -- CHANGING SPEAKER  $($index) -- `n`n"
+    $global:currentSpeaker|convertto-json|Out-Host
+    
+}
+
+function SetAgreement($call, $index) {
+    Write-Host "`n`n -- CHANGING AGREEMENT $($index) -- `n`n"
+}
+
 function OpenEpisode($show) {
     $where = "$('"')ShowSeason='$($show.CurrentSeasonName)'$('"')"
-    $where|Out-host
-    $reply = yesand GetSeasonEpisodes -where $where|ConvertFrom-Json
-    $reply|Out-Host
+    $reply = yesand GetSeasonEpisodes -where $where -view EpisodeList|ConvertFrom-Json
     if (HasNoErrors($reply)) {
         $reply.SeasonEpisodes|select Name|format-table|Out-Host
         $eStr = Read-Host "Which episode?"
@@ -185,9 +226,45 @@ function StartNextEpisode($show) {
     }
     $payload|convertto-json|Out-file ./payload.json
     $reply = yesand AddSeasonEpisode -bodyfile ./payload.json|ConvertFrom-Json
-    $episode = $reply.SeasonEpisode
-    $episode|Out-Host
-    return $episode    
+    if (HasNoErrors($reply)) {
+        $episode = $reply.SeasonEpisode
+        AddEpisodeHost $episode "Host"
+        AddEpisodeHost $episode "Co-Host"
+        return $episode    
+    }
+}
+
+function AddEpisodeHost($episode, $role) {
+    Write-Host "$($episode.Name) $($role)s:" 
+    $count = 1;
+    foreach ($globalHost in $Global:hosts) {
+        Write-host "$($count++). " $globalHost.Name
+    }
+    $hostString = Read-Host("`n`nWho is the $($role) for $($episode.Name)?")    
+    $hostInt = [int]$hostString;
+    $person = $global:hosts[$hostInt - 1]
+    $episodeHost = CreateEpisodeHost $episode $person $role
+    return $episodeHost;
+}
+
+
+function CreateEpisodeHost($episode, $person, $role) {
+    $payload = @{
+        EpisodeHost = @{
+            SeasonEpisode = $episode.SeasonEpisodeId
+            Person = $person.PersonId;
+            Role = $role;
+        }
+    }
+
+    $payload | convertto-json | out-file ./payload.json
+
+    $responseJson = yesand AddEpisodeHost -bodyfile ./payload.json
+    $response = $responseJson|convertfrom-json
+
+    if (HasNoErrors($response)) {
+        return $response.CallParticipant
+    }
 }
 
 function ChooseShow() {
@@ -198,7 +275,6 @@ function ChooseShow() {
     $showString = Read-Host "Which show would you like to start?";
     $showInt = [int]$showString;
     $show = $reply.Shows[$showInt - 1]
-    $show|convertto-json|Out-Host
     $global:episode = $null;
     $global:call = $null;
     return $show
@@ -209,28 +285,23 @@ function DoNothing() {
 }
 
 function OpenCall($episode) {
-    $episode|Out-Host
     $reply = yesand GetEpisodeCalls -where "$('"')SeasonEpisode='$($episode.Name)'$('"')" -view CallList|ConvertFrom-Json
-    $reply|Out-host
     if (HasNoErrors($reply)) {
         $calls = $reply.EpisodeCalls
         $calls|select Name,Subject|Format-table|Out-Host
         $callNumber = Read-Host("What call do you want to open?")
         $callNumberInt = [int]$callNumber;
         return $reply.EpisodeCalls[$callNumberInt - 1]
-    } else {
-        Write-Host $reply.ErrorMessage
     }
 }
 
 function StartCall($episode) {
     $subject = Read-Host("Call Subject?")
     $call = CreateCall $episode  $subject
-    Write-Host("Details")
-    $call|convertto-json
     AddHost $call "Host";
     AddHost $call "Co-Host";
     AddGuest $call
+    return $call
 }
 
 function AddHost($call, $role) {
@@ -264,18 +335,13 @@ function AddParticipant($call, $participantName, $person) {
         }
     }
 
-    $payload|Out-Host
-
     $payload | convertto-json | out-file ./payload.json
 
     $responseJson = yesand AddCallParticipant -bodyfile ./payload.json
-    $responseJson|Out-Host
     $response = $responseJson|convertfrom-json
 
     if (HasNoErrors($response)) {
-        return $respo;nse.CallParticipant
-    } else {
-        return $null;
+        return $response.CallParticipant
     }
 }
 
@@ -294,8 +360,6 @@ function CreateCall($episode, $callSubject) {
         Write-Host("GOT CALL")
         write-host($response|convertto-json)
         return $response.EpisodeCall
-    } else {
-        return $null
     }
 }
 
