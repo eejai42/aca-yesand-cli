@@ -70,6 +70,14 @@ namespace EAPI.CLI.Lib.DataClasses
         [RemoteIsCollection]
         public String CallSubject { get; set; }
     
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "SeasonEpisode")]
+        [RemoteIsCollection]
+        public String SeasonEpisode { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "EpisodeShowName")]
+        [RemoteIsCollection]
+        public String EpisodeShowName { get; set; }
+    
 
         
 

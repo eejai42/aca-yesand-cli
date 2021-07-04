@@ -71,6 +71,16 @@ namespace EAPI.CLI.Lib.DataClasses
         [RemoteIsCollection]
         public String CallParticpants { get; set; }
     
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CallStartTime")]
+        [RemoteIsCollection]
+        public Nullable<DateTime> CallStartTime { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CreatedTime")]
+        public Nullable<DateTime> CreatedTime { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "Timstamp")]
+        public Nullable<decimal> Timstamp { get; set; }
+    
 
         
 

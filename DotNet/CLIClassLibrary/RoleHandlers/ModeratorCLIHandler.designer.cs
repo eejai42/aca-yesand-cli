@@ -686,6 +686,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - Show");
                     sb.AppendLine($"CRUD      - HostInitials");
                     sb.AppendLine($"CRUD      - HostName");
+                    sb.AppendLine($"CRUD      - Role");
                 
             
         }
@@ -712,6 +713,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - Show");
                     sb.AppendLine($"CRUD      - HostInitials");
                     sb.AppendLine($"CRUD      - HostName");
+                    sb.AppendLine($"CRUD      - Role");
                 
             
         }
@@ -738,6 +740,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - Show");
                     sb.AppendLine($"CRUD      - HostInitials");
                     sb.AppendLine($"CRUD      - HostName");
+                    sb.AppendLine($"CRUD      - Role");
                 
             
         }
@@ -845,6 +848,9 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - CallParticipant");
                     sb.AppendLine($"CRUD      - TopicAgreement");
                     sb.AppendLine($"CRUD      - CallParticpants");
+                    sb.AppendLine($"CRUD      - CallStartTime");
+                    sb.AppendLine($"CRUD      - CreatedTime");
+                    sb.AppendLine($"CRUD      - Timstamp");
                 
             
         }
@@ -873,6 +879,9 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - CallParticipant");
                     sb.AppendLine($"CRUD      - TopicAgreement");
                     sb.AppendLine($"CRUD      - CallParticpants");
+                    sb.AppendLine($"CRUD      - CallStartTime");
+                    sb.AppendLine($"CRUD      - CreatedTime");
+                    sb.AppendLine($"CRUD      - Timstamp");
                 
             
         }
@@ -901,6 +910,9 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - CallParticipant");
                     sb.AppendLine($"CRUD      - TopicAgreement");
                     sb.AppendLine($"CRUD      - CallParticpants");
+                    sb.AppendLine($"CRUD      - CallStartTime");
+                    sb.AppendLine($"CRUD      - CreatedTime");
+                    sb.AppendLine($"CRUD      - Timstamp");
                 
             
         }
@@ -934,6 +946,8 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - LongName");
                     sb.AppendLine($"CRUD      - ShortName");
                     sb.AppendLine($"CRUD      - CallStartTime");
+                    sb.AppendLine($"CRUD      - EpisodeShowName");
+                    sb.AppendLine($"CRUD      - EpisodeShow");
                 
             
         }
@@ -962,6 +976,8 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - LongName");
                     sb.AppendLine($"CRUD      - ShortName");
                     sb.AppendLine($"CRUD      - CallStartTime");
+                    sb.AppendLine($"CRUD      - EpisodeShowName");
+                    sb.AppendLine($"CRUD      - EpisodeShow");
                 
             
         }
@@ -990,6 +1006,8 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - LongName");
                     sb.AppendLine($"CRUD      - ShortName");
                     sb.AppendLine($"CRUD      - CallStartTime");
+                    sb.AppendLine($"CRUD      - EpisodeShowName");
+                    sb.AppendLine($"CRUD      - EpisodeShow");
                 
             
         }
@@ -1023,6 +1041,8 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - DisplayName");
                     sb.AppendLine($"CRUD      - ChosenName");
                     sb.AppendLine($"CRUD      - CallSubject");
+                    sb.AppendLine($"CRUD      - SeasonEpisode");
+                    sb.AppendLine($"CRUD      - EpisodeShowName");
                 
             
         }
@@ -1051,6 +1071,8 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - DisplayName");
                     sb.AppendLine($"CRUD      - ChosenName");
                     sb.AppendLine($"CRUD      - CallSubject");
+                    sb.AppendLine($"CRUD      - SeasonEpisode");
+                    sb.AppendLine($"CRUD      - EpisodeShowName");
                 
             
         }
@@ -1079,6 +1101,8 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - DisplayName");
                     sb.AppendLine($"CRUD      - ChosenName");
                     sb.AppendLine($"CRUD      - CallSubject");
+                    sb.AppendLine($"CRUD      - SeasonEpisode");
+                    sb.AppendLine($"CRUD      - EpisodeShowName");
                 
             
         }

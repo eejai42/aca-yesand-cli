@@ -32,10 +32,11 @@ function MainMenu() {
         $global:episode = OpenEpisode $global:show
         MainMenu
     } elseif ($option -eq "4") {
-        $global:call = StartCall $global:episode
+        StartCall $global:episode
+        Write-Host "CALL STARTED: $($global:call.Name)..."
         MainMenu
     } elseif ($option -eq "5") {
-        $global:call = OpenCall $global:episode        
+        $global:call = OpenCall $global:episode   
         MainMenu
     } elseif ($option -eq "6") {
         $global:hosts = ManageHosts $global:episode
@@ -252,7 +253,7 @@ function CreateEpisodeHost($episode, $person, $role) {
     $payload = @{
         EpisodeHost = @{
             SeasonEpisode = $episode.SeasonEpisodeId
-            Person = $person.PersonId;
+            ShowHost = $person.PersonId;
             Role = $role;
         }
     }
@@ -297,41 +298,38 @@ function OpenCall($episode) {
 
 function StartCall($episode) {
     $subject = Read-Host("Call Subject?")
-    $call = CreateCall $episode  $subject
-    AddHost $call "Host";
-    AddHost $call "Co-Host";
-    AddGuest $call
-    return $call
+    $sccall = CreateCall $episode  $subject
+    $reply = yesand GetEpisodeHosts -where "$('"')SeasonEpisode='$($episode.Name)'$('"')"|convertfrom-json
+    if (HasNoErrors($reply)) {
+        foreach ($episodeHost in $reply.EpisodeHosts) {
+            AddHost $sccall $episodeHost
+        }
+    };
+    AddGuest $sccall;
+    $sccall|convertto-json|Out-host;
+    $global:call = $sccall;
+    return $null;
 }
 
-function AddHost($call, $role) {
-    Write-Host "TEST: " $role
-    foreach ($globalHost in $Global:hosts) {
-        Write-host $globalHost.Name
-    }
-    $hostString = Read-Host("Who is the $($role)?")    
-    $hostInt = [int]$hostString;
-    $person = $global:hosts[$hostInt - 1]
-    $participant = AddParticipant $call $null $person
+function AddHost($call, $episodeHost) {
+    Write-Host "Adding Episode Host to call" $call.Subject " - " $episodeHost.Name " as " $episodeHost.Role
+    $participant = AddParticipant $call $null $episodeHost.ShowHost $episodeHost.Role
     return $participant;
 }
 
 function AddGuest($call) {
-    $guestName = Read-Host "Who is the Guest?";
-    return AddParticipant $call $guestName $null;
+    $guestName = Read-Host "Who is the Caller?";
+    return AddParticipant $call $guestName $null "Caller";
 }
 
-function AddParticipant($call, $participantName, $person) {
-    $personId = $null;
-    if ($person -ne $null) {
-        $personId = $person.PersonId;
-    }
+function AddParticipant($call, $participantName, $personId, $role) {
 
     $payload = @{
         CallParticipant = @{
             EpisodeCall = $call.EpisodeCallId;
             ChosenName = $participantName;
             Person = $personId;
+            Role = $role;
         }
     }
 
@@ -342,6 +340,8 @@ function AddParticipant($call, $participantName, $person) {
 
     if (HasNoErrors($response)) {
         return $response.CallParticipant
+    } else {
+        return $null
     }
 }
 
@@ -360,6 +360,8 @@ function CreateCall($episode, $callSubject) {
         Write-Host("GOT CALL")
         write-host($response|convertto-json)
         return $response.EpisodeCall
+    } else {
+        return $null;
     }
 }
 
@@ -376,6 +378,8 @@ function LoadGlobals() {
     $payload = yesand GetPeople -where "Roles='Host'"|convertfrom-json
     if (HasNoErrors($payload)) {
         $global:hosts = $payload.People
+    } else {
+        return $null;
     }
 }
 
