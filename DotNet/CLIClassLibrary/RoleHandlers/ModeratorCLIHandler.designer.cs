@@ -1288,6 +1288,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - CurrentSeasonNumber");
                     sb.AppendLine($"CRUD      - LastEpisodeNumber");
                     sb.AppendLine($"CRUD      - NextEpisodeNumber");
+                    sb.AppendLine($"CRUD      - CurrentSeasonName");
                 
             
         }
@@ -1314,6 +1315,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - CurrentSeasonNumber");
                     sb.AppendLine($"CRUD      - LastEpisodeNumber");
                     sb.AppendLine($"CRUD      - NextEpisodeNumber");
+                    sb.AppendLine($"CRUD      - CurrentSeasonName");
                 
             
         }
@@ -1340,6 +1342,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - CurrentSeasonNumber");
                     sb.AppendLine($"CRUD      - LastEpisodeNumber");
                     sb.AppendLine($"CRUD      - NextEpisodeNumber");
+                    sb.AppendLine($"CRUD      - CurrentSeasonName");
                 
             
         }
@@ -1375,6 +1378,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - LongName");
                     sb.AppendLine($"CRUD      - ShortName");
                     sb.AppendLine($"CRUD      - EpisodeCallCount");
+                    sb.AppendLine($"CRUD      - ShowSeasonId");
                 
             
         }
@@ -1405,6 +1409,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - LongName");
                     sb.AppendLine($"CRUD      - ShortName");
                     sb.AppendLine($"CRUD      - EpisodeCallCount");
+                    sb.AppendLine($"CRUD      - ShowSeasonId");
                 
             
         }
@@ -1435,6 +1440,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - LongName");
                     sb.AppendLine($"CRUD      - ShortName");
                     sb.AppendLine($"CRUD      - EpisodeCallCount");
+                    sb.AppendLine($"CRUD      - ShowSeasonId");
                 
             
         }

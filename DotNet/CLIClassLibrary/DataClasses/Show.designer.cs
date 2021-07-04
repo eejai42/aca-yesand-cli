@@ -63,6 +63,10 @@ namespace EAPI.CLI.Lib.DataClasses
         [RemoteIsCollection]
         public Nullable<Int32> NextEpisodeNumber { get; set; }
     
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CurrentSeasonName")]
+        [RemoteIsCollection]
+        public String CurrentSeasonName { get; set; }
+    
 
         
 

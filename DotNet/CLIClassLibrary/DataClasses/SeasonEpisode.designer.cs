@@ -76,6 +76,10 @@ namespace EAPI.CLI.Lib.DataClasses
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "EpisodeCallCount")]
         public Nullable<Int32> EpisodeCallCount { get; set; }
     
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "ShowSeasonId")]
+        [RemoteIsCollection]
+        public String ShowSeasonId { get; set; }
+    
 
         
 
