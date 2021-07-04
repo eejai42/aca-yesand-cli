@@ -173,6 +173,33 @@ namespace YP.SassyMQ.Lib.RabbitMQ
         }
         
         
+        /// <summary>
+        /// GetShows - 
+        /// </summary>
+        public Task GetShows(PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            return this.GetShows(this.CreatePayload(), replyHandler, timeoutHandler, waitTimeout);
+        }
+
+        /// <summary>
+        /// GetShows - 
+        /// </summary>
+        public Task GetShows(String content, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            var payload = this.CreatePayload(content);
+            return this.GetShows(payload, replyHandler, timeoutHandler, waitTimeout);
+        }
+    
+        
+        /// <summary>
+        /// GetShows - 
+        /// </summary>
+        public Task GetShows(StandardPayload payload, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            return this.SendMessage("crudcoordinator.crud.guest.getshows", payload, replyHandler, timeoutHandler, waitTimeout);
+        }
+        
+        
     }
 }
 

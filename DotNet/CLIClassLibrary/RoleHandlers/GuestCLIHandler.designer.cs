@@ -24,7 +24,8 @@ namespace CLIClassLibrary.RoleHandlers
                 sb.AppendLine($"void: ValidateTemporaryAccessToken");
                 sb.AppendLine($"void: WhoAmI");
                 sb.AppendLine($"void: WhoAreYou");
-                sb.AppendLine($"void: StoreTempFile");                                            
+                sb.AppendLine($"void: StoreTempFile");
+                sb.AppendLine($"Show: GetShows");                                            
             }
             
             sb.AppendLine($"{Environment.NewLine}Available Actions Matching: {helpTerm}");
@@ -71,6 +72,15 @@ namespace CLIClassLibrary.RoleHandlers
                 if ("storetempfile".Equals(helpTerm, StringComparison.OrdinalIgnoreCase)) 
                 {
                     this.PrintStoreTempFileHelp(sb);
+                }
+                found = true;
+            }
+            if ("getshows".Contains(helpTerm, StringComparison.OrdinalIgnoreCase))
+            {
+                sb.AppendLine($" - GetShows");
+                if ("getshows".Equals(helpTerm, StringComparison.OrdinalIgnoreCase)) 
+                {
+                    this.PrintGetShowsHelp(sb);
                 }
                 found = true;
             }
@@ -129,6 +139,13 @@ namespace CLIClassLibrary.RoleHandlers
                     }).Wait(30000);
                     break;                   
 
+                case "getshows":
+                    this.SMQActor.GetShows(payload, (reply, bdea) =>
+                    {
+                        result = SerializePayload(reply);
+                    }).Wait(30000);
+                    break;                   
+
                 default:
                     throw new Exception($"Invalid request: {invokeRequest}");
             }
@@ -159,6 +176,24 @@ namespace CLIClassLibrary.RoleHandlers
         
         public void PrintStoreTempFileHelp(StringBuilder sb)
         {
+            
+        }
+        
+        public void PrintGetShowsHelp(StringBuilder sb)
+        {
+            
+                
+                sb.AppendLine();
+                sb.AppendLine($"* * * * * * * * * * * * * * * * * * * * * * * * * * *");
+                sb.AppendLine($"* *  OBJECT DEF: Show     *");
+                sb.AppendLine($"* * * * * * * * * * * * * * * * * * * * * * * * * * *");
+                sb.AppendLine();
+                
+                    sb.AppendLine($"R      - ShowId");
+                    sb.AppendLine($"R      - Name");
+                    sb.AppendLine($"R      - Notes");
+                    sb.AppendLine($"R      - CurrentSeason");
+                
             
         }
         

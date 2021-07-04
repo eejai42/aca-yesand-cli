@@ -97,6 +97,7 @@ function LoadTopics($call) {
         if ($topics.length -lt 1) {
             $topic = AddTopic $call $null $call.Subject
             $topics.Add($topic)
+            $global:currentTopic = $topic
         }
         $topics | format-table | Out-Host
         $global:topics = $topics

@@ -276,6 +276,10 @@ namespace YP.SassyMQ.Lib.RabbitMQ
                         this.OnModeratorDeleteShowSeasonReceived(payload, bdea);
                         break;
                     
+                    case "crudcoordinator.crud.guest.getshows":
+                        this.OnGuestGetShowsReceived(payload, bdea);
+                        break;
+                    
                     case "crudcoordinator.crud.admin.addshow":
                         this.OnAdminAddShowReceived(payload, bdea);
                         break;
@@ -1233,6 +1237,20 @@ namespace YP.SassyMQ.Lib.RabbitMQ
             {
                 plea.Payload.IsHandled = true;
                 this.ModeratorDeleteShowSeasonReceived(this, plea);
+            }
+        }
+
+        /// <summary>
+        /// Responds to: GetShows from Guest
+        /// </summary>
+        public event EventHandler<PayloadEventArgs> GuestGetShowsReceived;
+        protected virtual void OnGuestGetShowsReceived(StandardPayload payload, BasicDeliverEventArgs bdea)
+        {
+            var plea = new PayloadEventArgs(payload, bdea);
+            if (!ReferenceEquals(this.GuestGetShowsReceived, null))
+            {
+                plea.Payload.IsHandled = true;
+                this.GuestGetShowsReceived(this, plea);
             }
         }
 
