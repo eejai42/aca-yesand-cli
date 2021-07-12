@@ -67,6 +67,9 @@ namespace EAPI.CLI.Lib.DataClasses
         [RemoteIsCollection]
         public String CurrentSeasonName { get; set; }
     
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "Color")]
+        public String Color { get; set; }
+    
 
         
 

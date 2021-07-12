@@ -81,6 +81,26 @@ namespace EAPI.CLI.Lib.DataClasses
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "Timstamp")]
         public Nullable<decimal> Timstamp { get; set; }
     
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "EpisodeCalls")]
+        [RemoteIsCollection]
+        public String[] EpisodeCalls { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CallParticipantDisplayNames")]
+        [RemoteIsCollection]
+        public String CallParticipantDisplayNames { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CallParticipantsDisplayNames")]
+        [RemoteIsCollection]
+        public String CallParticipantsDisplayNames { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CallParticipantDisplayName")]
+        [RemoteIsCollection]
+        public String CallParticipantDisplayName { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CallParticipantAvatar")]
+        [RemoteIsCollection]
+        public AirtableAttachment[] CallParticipantAvatar { get; set; }
+    
 
         
 

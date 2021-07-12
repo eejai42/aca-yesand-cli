@@ -68,6 +68,10 @@ namespace EAPI.CLI.Lib.DataClasses
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "Role")]
         public String Role { get; set; }
     
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "HostAvatar")]
+        [RemoteIsCollection]
+        public AirtableAttachment[] HostAvatar { get; set; }
+    
 
         
 

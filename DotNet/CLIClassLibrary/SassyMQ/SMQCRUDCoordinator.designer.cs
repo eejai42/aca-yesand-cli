@@ -84,6 +84,38 @@ namespace YP.SassyMQ.Lib.RabbitMQ
                         this.OnModeratorDeleteEpisodeHostReceived(payload, bdea);
                         break;
                     
+                    case "crudcoordinator.crud.admin.addfallacy":
+                        this.OnAdminAddFallacyReceived(payload, bdea);
+                        break;
+                    
+                    case "crudcoordinator.crud.admin.getfallacies":
+                        this.OnAdminGetFallaciesReceived(payload, bdea);
+                        break;
+                    
+                    case "crudcoordinator.crud.admin.updatefallacy":
+                        this.OnAdminUpdateFallacyReceived(payload, bdea);
+                        break;
+                    
+                    case "crudcoordinator.crud.admin.deletefallacy":
+                        this.OnAdminDeleteFallacyReceived(payload, bdea);
+                        break;
+                    
+                    case "crudcoordinator.crud.moderator.addfallacy":
+                        this.OnModeratorAddFallacyReceived(payload, bdea);
+                        break;
+                    
+                    case "crudcoordinator.crud.moderator.getfallacies":
+                        this.OnModeratorGetFallaciesReceived(payload, bdea);
+                        break;
+                    
+                    case "crudcoordinator.crud.moderator.updatefallacy":
+                        this.OnModeratorUpdateFallacyReceived(payload, bdea);
+                        break;
+                    
+                    case "crudcoordinator.crud.moderator.deletefallacy":
+                        this.OnModeratorDeleteFallacyReceived(payload, bdea);
+                        break;
+                    
                     case "crudcoordinator.crud.admin.addtopicagreement":
                         this.OnAdminAddTopicAgreementReceived(payload, bdea);
                         break;
@@ -178,6 +210,38 @@ namespace YP.SassyMQ.Lib.RabbitMQ
                     
                     case "crudcoordinator.crud.moderator.deleteepisodecall":
                         this.OnModeratorDeleteEpisodeCallReceived(payload, bdea);
+                        break;
+                    
+                    case "crudcoordinator.crud.admin.addopenissue":
+                        this.OnAdminAddOpenIssueReceived(payload, bdea);
+                        break;
+                    
+                    case "crudcoordinator.crud.admin.getopenissues":
+                        this.OnAdminGetOpenIssuesReceived(payload, bdea);
+                        break;
+                    
+                    case "crudcoordinator.crud.admin.updateopenissue":
+                        this.OnAdminUpdateOpenIssueReceived(payload, bdea);
+                        break;
+                    
+                    case "crudcoordinator.crud.admin.deleteopenissue":
+                        this.OnAdminDeleteOpenIssueReceived(payload, bdea);
+                        break;
+                    
+                    case "crudcoordinator.crud.moderator.addopenissue":
+                        this.OnModeratorAddOpenIssueReceived(payload, bdea);
+                        break;
+                    
+                    case "crudcoordinator.crud.moderator.getopenissues":
+                        this.OnModeratorGetOpenIssuesReceived(payload, bdea);
+                        break;
+                    
+                    case "crudcoordinator.crud.moderator.updateopenissue":
+                        this.OnModeratorUpdateOpenIssueReceived(payload, bdea);
+                        break;
+                    
+                    case "crudcoordinator.crud.moderator.deleteopenissue":
+                        this.OnModeratorDeleteOpenIssueReceived(payload, bdea);
                         break;
                     
                     case "crudcoordinator.crud.admin.addcallparticipant":
@@ -569,6 +633,118 @@ namespace YP.SassyMQ.Lib.RabbitMQ
         }
 
         /// <summary>
+        /// Responds to: AddFallacy from Admin
+        /// </summary>
+        public event EventHandler<PayloadEventArgs> AdminAddFallacyReceived;
+        protected virtual void OnAdminAddFallacyReceived(StandardPayload payload, BasicDeliverEventArgs bdea)
+        {
+            var plea = new PayloadEventArgs(payload, bdea);
+            if (!ReferenceEquals(this.AdminAddFallacyReceived, null))
+            {
+                plea.Payload.IsHandled = true;
+                this.AdminAddFallacyReceived(this, plea);
+            }
+        }
+
+        /// <summary>
+        /// Responds to: GetFallacies from Admin
+        /// </summary>
+        public event EventHandler<PayloadEventArgs> AdminGetFallaciesReceived;
+        protected virtual void OnAdminGetFallaciesReceived(StandardPayload payload, BasicDeliverEventArgs bdea)
+        {
+            var plea = new PayloadEventArgs(payload, bdea);
+            if (!ReferenceEquals(this.AdminGetFallaciesReceived, null))
+            {
+                plea.Payload.IsHandled = true;
+                this.AdminGetFallaciesReceived(this, plea);
+            }
+        }
+
+        /// <summary>
+        /// Responds to: UpdateFallacy from Admin
+        /// </summary>
+        public event EventHandler<PayloadEventArgs> AdminUpdateFallacyReceived;
+        protected virtual void OnAdminUpdateFallacyReceived(StandardPayload payload, BasicDeliverEventArgs bdea)
+        {
+            var plea = new PayloadEventArgs(payload, bdea);
+            if (!ReferenceEquals(this.AdminUpdateFallacyReceived, null))
+            {
+                plea.Payload.IsHandled = true;
+                this.AdminUpdateFallacyReceived(this, plea);
+            }
+        }
+
+        /// <summary>
+        /// Responds to: DeleteFallacy from Admin
+        /// </summary>
+        public event EventHandler<PayloadEventArgs> AdminDeleteFallacyReceived;
+        protected virtual void OnAdminDeleteFallacyReceived(StandardPayload payload, BasicDeliverEventArgs bdea)
+        {
+            var plea = new PayloadEventArgs(payload, bdea);
+            if (!ReferenceEquals(this.AdminDeleteFallacyReceived, null))
+            {
+                plea.Payload.IsHandled = true;
+                this.AdminDeleteFallacyReceived(this, plea);
+            }
+        }
+
+        /// <summary>
+        /// Responds to: AddFallacy from Moderator
+        /// </summary>
+        public event EventHandler<PayloadEventArgs> ModeratorAddFallacyReceived;
+        protected virtual void OnModeratorAddFallacyReceived(StandardPayload payload, BasicDeliverEventArgs bdea)
+        {
+            var plea = new PayloadEventArgs(payload, bdea);
+            if (!ReferenceEquals(this.ModeratorAddFallacyReceived, null))
+            {
+                plea.Payload.IsHandled = true;
+                this.ModeratorAddFallacyReceived(this, plea);
+            }
+        }
+
+        /// <summary>
+        /// Responds to: GetFallacies from Moderator
+        /// </summary>
+        public event EventHandler<PayloadEventArgs> ModeratorGetFallaciesReceived;
+        protected virtual void OnModeratorGetFallaciesReceived(StandardPayload payload, BasicDeliverEventArgs bdea)
+        {
+            var plea = new PayloadEventArgs(payload, bdea);
+            if (!ReferenceEquals(this.ModeratorGetFallaciesReceived, null))
+            {
+                plea.Payload.IsHandled = true;
+                this.ModeratorGetFallaciesReceived(this, plea);
+            }
+        }
+
+        /// <summary>
+        /// Responds to: UpdateFallacy from Moderator
+        /// </summary>
+        public event EventHandler<PayloadEventArgs> ModeratorUpdateFallacyReceived;
+        protected virtual void OnModeratorUpdateFallacyReceived(StandardPayload payload, BasicDeliverEventArgs bdea)
+        {
+            var plea = new PayloadEventArgs(payload, bdea);
+            if (!ReferenceEquals(this.ModeratorUpdateFallacyReceived, null))
+            {
+                plea.Payload.IsHandled = true;
+                this.ModeratorUpdateFallacyReceived(this, plea);
+            }
+        }
+
+        /// <summary>
+        /// Responds to: DeleteFallacy from Moderator
+        /// </summary>
+        public event EventHandler<PayloadEventArgs> ModeratorDeleteFallacyReceived;
+        protected virtual void OnModeratorDeleteFallacyReceived(StandardPayload payload, BasicDeliverEventArgs bdea)
+        {
+            var plea = new PayloadEventArgs(payload, bdea);
+            if (!ReferenceEquals(this.ModeratorDeleteFallacyReceived, null))
+            {
+                plea.Payload.IsHandled = true;
+                this.ModeratorDeleteFallacyReceived(this, plea);
+            }
+        }
+
+        /// <summary>
         /// Responds to: AddTopicAgreement from Admin
         /// </summary>
         public event EventHandler<PayloadEventArgs> AdminAddTopicAgreementReceived;
@@ -901,6 +1077,118 @@ namespace YP.SassyMQ.Lib.RabbitMQ
             {
                 plea.Payload.IsHandled = true;
                 this.ModeratorDeleteEpisodeCallReceived(this, plea);
+            }
+        }
+
+        /// <summary>
+        /// Responds to: AddOpenIssue from Admin
+        /// </summary>
+        public event EventHandler<PayloadEventArgs> AdminAddOpenIssueReceived;
+        protected virtual void OnAdminAddOpenIssueReceived(StandardPayload payload, BasicDeliverEventArgs bdea)
+        {
+            var plea = new PayloadEventArgs(payload, bdea);
+            if (!ReferenceEquals(this.AdminAddOpenIssueReceived, null))
+            {
+                plea.Payload.IsHandled = true;
+                this.AdminAddOpenIssueReceived(this, plea);
+            }
+        }
+
+        /// <summary>
+        /// Responds to: GetOpenIssues from Admin
+        /// </summary>
+        public event EventHandler<PayloadEventArgs> AdminGetOpenIssuesReceived;
+        protected virtual void OnAdminGetOpenIssuesReceived(StandardPayload payload, BasicDeliverEventArgs bdea)
+        {
+            var plea = new PayloadEventArgs(payload, bdea);
+            if (!ReferenceEquals(this.AdminGetOpenIssuesReceived, null))
+            {
+                plea.Payload.IsHandled = true;
+                this.AdminGetOpenIssuesReceived(this, plea);
+            }
+        }
+
+        /// <summary>
+        /// Responds to: UpdateOpenIssue from Admin
+        /// </summary>
+        public event EventHandler<PayloadEventArgs> AdminUpdateOpenIssueReceived;
+        protected virtual void OnAdminUpdateOpenIssueReceived(StandardPayload payload, BasicDeliverEventArgs bdea)
+        {
+            var plea = new PayloadEventArgs(payload, bdea);
+            if (!ReferenceEquals(this.AdminUpdateOpenIssueReceived, null))
+            {
+                plea.Payload.IsHandled = true;
+                this.AdminUpdateOpenIssueReceived(this, plea);
+            }
+        }
+
+        /// <summary>
+        /// Responds to: DeleteOpenIssue from Admin
+        /// </summary>
+        public event EventHandler<PayloadEventArgs> AdminDeleteOpenIssueReceived;
+        protected virtual void OnAdminDeleteOpenIssueReceived(StandardPayload payload, BasicDeliverEventArgs bdea)
+        {
+            var plea = new PayloadEventArgs(payload, bdea);
+            if (!ReferenceEquals(this.AdminDeleteOpenIssueReceived, null))
+            {
+                plea.Payload.IsHandled = true;
+                this.AdminDeleteOpenIssueReceived(this, plea);
+            }
+        }
+
+        /// <summary>
+        /// Responds to: AddOpenIssue from Moderator
+        /// </summary>
+        public event EventHandler<PayloadEventArgs> ModeratorAddOpenIssueReceived;
+        protected virtual void OnModeratorAddOpenIssueReceived(StandardPayload payload, BasicDeliverEventArgs bdea)
+        {
+            var plea = new PayloadEventArgs(payload, bdea);
+            if (!ReferenceEquals(this.ModeratorAddOpenIssueReceived, null))
+            {
+                plea.Payload.IsHandled = true;
+                this.ModeratorAddOpenIssueReceived(this, plea);
+            }
+        }
+
+        /// <summary>
+        /// Responds to: GetOpenIssues from Moderator
+        /// </summary>
+        public event EventHandler<PayloadEventArgs> ModeratorGetOpenIssuesReceived;
+        protected virtual void OnModeratorGetOpenIssuesReceived(StandardPayload payload, BasicDeliverEventArgs bdea)
+        {
+            var plea = new PayloadEventArgs(payload, bdea);
+            if (!ReferenceEquals(this.ModeratorGetOpenIssuesReceived, null))
+            {
+                plea.Payload.IsHandled = true;
+                this.ModeratorGetOpenIssuesReceived(this, plea);
+            }
+        }
+
+        /// <summary>
+        /// Responds to: UpdateOpenIssue from Moderator
+        /// </summary>
+        public event EventHandler<PayloadEventArgs> ModeratorUpdateOpenIssueReceived;
+        protected virtual void OnModeratorUpdateOpenIssueReceived(StandardPayload payload, BasicDeliverEventArgs bdea)
+        {
+            var plea = new PayloadEventArgs(payload, bdea);
+            if (!ReferenceEquals(this.ModeratorUpdateOpenIssueReceived, null))
+            {
+                plea.Payload.IsHandled = true;
+                this.ModeratorUpdateOpenIssueReceived(this, plea);
+            }
+        }
+
+        /// <summary>
+        /// Responds to: DeleteOpenIssue from Moderator
+        /// </summary>
+        public event EventHandler<PayloadEventArgs> ModeratorDeleteOpenIssueReceived;
+        protected virtual void OnModeratorDeleteOpenIssueReceived(StandardPayload payload, BasicDeliverEventArgs bdea)
+        {
+            var plea = new PayloadEventArgs(payload, bdea);
+            if (!ReferenceEquals(this.ModeratorDeleteOpenIssueReceived, null))
+            {
+                plea.Payload.IsHandled = true;
+                this.ModeratorDeleteOpenIssueReceived(this, plea);
             }
         }
 

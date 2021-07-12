@@ -23,12 +23,12 @@ namespace CLIClassLibrary.RoleHandlers
                     return new CRUDCoordinatorCLIHandler(amqps, accessToken);
 
                     
-                case "admin":
-                    return new AdminCLIHandler(amqps, accessToken);
-
-                    
                 case "moderator":
                     return new ModeratorCLIHandler(amqps, accessToken);
+
+                    
+                case "admin":
+                    return new AdminCLIHandler(amqps, accessToken);
 
 
                 default:
@@ -41,8 +41,8 @@ namespace CLIClassLibrary.RoleHandlers
            
             sbHelpBuilder.AppendLine(" - Guest");
             sbHelpBuilder.AppendLine(" - CRUDCoordinator");
-            sbHelpBuilder.AppendLine(" - Admin");
             sbHelpBuilder.AppendLine(" - Moderator");
+            sbHelpBuilder.AppendLine(" - Admin");
         }
     }
 }

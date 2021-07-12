@@ -52,6 +52,14 @@ namespace EAPI.CLI.Lib.DataClasses
         [RemoteIsCollection]
         public String CallParticipant { get; set; }
     
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CallParticipantAvatar")]
+        [RemoteIsCollection]
+        public AirtableAttachment[] CallParticipantAvatar { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CallParticipantDisplayName")]
+        [RemoteIsCollection]
+        public String CallParticipantDisplayName { get; set; }
+    
 
         
 

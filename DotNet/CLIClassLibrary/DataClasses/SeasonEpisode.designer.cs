@@ -80,6 +80,10 @@ namespace EAPI.CLI.Lib.DataClasses
         [RemoteIsCollection]
         public String ShowSeasonId { get; set; }
     
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "SeasonName")]
+        [RemoteIsCollection]
+        public String SeasonName { get; set; }
+    
 
         
 

@@ -24,6 +24,10 @@ namespace CLIClassLibrary.RoleHandlers
                 sb.AppendLine($"EpisodeHost: GetEpisodeHosts");
                 sb.AppendLine($"EpisodeHost: UpdateEpisodeHost");
                 sb.AppendLine($"void: DeleteEpisodeHost");
+                sb.AppendLine($"Fallacy: AddFallacy");
+                sb.AppendLine($"Fallacy: GetFallacies");
+                sb.AppendLine($"Fallacy: UpdateFallacy");
+                sb.AppendLine($"void: DeleteFallacy");
                 sb.AppendLine($"TopicAgreement: AddTopicAgreement");
                 sb.AppendLine($"TopicAgreement: GetTopicAgreements");
                 sb.AppendLine($"TopicAgreement: UpdateTopicAgreement");
@@ -36,6 +40,10 @@ namespace CLIClassLibrary.RoleHandlers
                 sb.AppendLine($"EpisodeCall: GetEpisodeCalls");
                 sb.AppendLine($"EpisodeCall: UpdateEpisodeCall");
                 sb.AppendLine($"void: DeleteEpisodeCall");
+                sb.AppendLine($"OpenIssue: AddOpenIssue");
+                sb.AppendLine($"OpenIssue: GetOpenIssues");
+                sb.AppendLine($"OpenIssue: UpdateOpenIssue");
+                sb.AppendLine($"void: DeleteOpenIssue");
                 sb.AppendLine($"CallParticipant: AddCallParticipant");
                 sb.AppendLine($"CallParticipant: GetCallParticipants");
                 sb.AppendLine($"CallParticipant: UpdateCallParticipant");
@@ -93,6 +101,42 @@ namespace CLIClassLibrary.RoleHandlers
                 if ("deleteepisodehost".Equals(helpTerm, StringComparison.OrdinalIgnoreCase)) 
                 {
                     this.PrintDeleteEpisodeHostHelp(sb);
+                }
+                found = true;
+            }
+            if ("addfallacy".Contains(helpTerm, StringComparison.OrdinalIgnoreCase))
+            {
+                sb.AppendLine($" - AddFallacy");
+                if ("addfallacy".Equals(helpTerm, StringComparison.OrdinalIgnoreCase)) 
+                {
+                    this.PrintAddFallacyHelp(sb);
+                }
+                found = true;
+            }
+            if ("getfallacies".Contains(helpTerm, StringComparison.OrdinalIgnoreCase))
+            {
+                sb.AppendLine($" - GetFallacies");
+                if ("getfallacies".Equals(helpTerm, StringComparison.OrdinalIgnoreCase)) 
+                {
+                    this.PrintGetFallaciesHelp(sb);
+                }
+                found = true;
+            }
+            if ("updatefallacy".Contains(helpTerm, StringComparison.OrdinalIgnoreCase))
+            {
+                sb.AppendLine($" - UpdateFallacy");
+                if ("updatefallacy".Equals(helpTerm, StringComparison.OrdinalIgnoreCase)) 
+                {
+                    this.PrintUpdateFallacyHelp(sb);
+                }
+                found = true;
+            }
+            if ("deletefallacy".Contains(helpTerm, StringComparison.OrdinalIgnoreCase))
+            {
+                sb.AppendLine($" - DeleteFallacy");
+                if ("deletefallacy".Equals(helpTerm, StringComparison.OrdinalIgnoreCase)) 
+                {
+                    this.PrintDeleteFallacyHelp(sb);
                 }
                 found = true;
             }
@@ -201,6 +245,42 @@ namespace CLIClassLibrary.RoleHandlers
                 if ("deleteepisodecall".Equals(helpTerm, StringComparison.OrdinalIgnoreCase)) 
                 {
                     this.PrintDeleteEpisodeCallHelp(sb);
+                }
+                found = true;
+            }
+            if ("addopenissue".Contains(helpTerm, StringComparison.OrdinalIgnoreCase))
+            {
+                sb.AppendLine($" - AddOpenIssue");
+                if ("addopenissue".Equals(helpTerm, StringComparison.OrdinalIgnoreCase)) 
+                {
+                    this.PrintAddOpenIssueHelp(sb);
+                }
+                found = true;
+            }
+            if ("getopenissues".Contains(helpTerm, StringComparison.OrdinalIgnoreCase))
+            {
+                sb.AppendLine($" - GetOpenIssues");
+                if ("getopenissues".Equals(helpTerm, StringComparison.OrdinalIgnoreCase)) 
+                {
+                    this.PrintGetOpenIssuesHelp(sb);
+                }
+                found = true;
+            }
+            if ("updateopenissue".Contains(helpTerm, StringComparison.OrdinalIgnoreCase))
+            {
+                sb.AppendLine($" - UpdateOpenIssue");
+                if ("updateopenissue".Equals(helpTerm, StringComparison.OrdinalIgnoreCase)) 
+                {
+                    this.PrintUpdateOpenIssueHelp(sb);
+                }
+                found = true;
+            }
+            if ("deleteopenissue".Contains(helpTerm, StringComparison.OrdinalIgnoreCase))
+            {
+                sb.AppendLine($" - DeleteOpenIssue");
+                if ("deleteopenissue".Equals(helpTerm, StringComparison.OrdinalIgnoreCase)) 
+                {
+                    this.PrintDeleteOpenIssueHelp(sb);
                 }
                 found = true;
             }
@@ -432,6 +512,34 @@ namespace CLIClassLibrary.RoleHandlers
                     }).Wait(30000);
                     break;                   
 
+                case "addfallacy":
+                    this.SMQActor.AddFallacy(payload, (reply, bdea) =>
+                    {
+                        result = SerializePayload(reply);
+                    }).Wait(30000);
+                    break;                   
+
+                case "getfallacies":
+                    this.SMQActor.GetFallacies(payload, (reply, bdea) =>
+                    {
+                        result = SerializePayload(reply);
+                    }).Wait(30000);
+                    break;                   
+
+                case "updatefallacy":
+                    this.SMQActor.UpdateFallacy(payload, (reply, bdea) =>
+                    {
+                        result = SerializePayload(reply);
+                    }).Wait(30000);
+                    break;                   
+
+                case "deletefallacy":
+                    this.SMQActor.DeleteFallacy(payload, (reply, bdea) =>
+                    {
+                        result = SerializePayload(reply);
+                    }).Wait(30000);
+                    break;                   
+
                 case "addtopicagreement":
                     this.SMQActor.AddTopicAgreement(payload, (reply, bdea) =>
                     {
@@ -511,6 +619,34 @@ namespace CLIClassLibrary.RoleHandlers
 
                 case "deleteepisodecall":
                     this.SMQActor.DeleteEpisodeCall(payload, (reply, bdea) =>
+                    {
+                        result = SerializePayload(reply);
+                    }).Wait(30000);
+                    break;                   
+
+                case "addopenissue":
+                    this.SMQActor.AddOpenIssue(payload, (reply, bdea) =>
+                    {
+                        result = SerializePayload(reply);
+                    }).Wait(30000);
+                    break;                   
+
+                case "getopenissues":
+                    this.SMQActor.GetOpenIssues(payload, (reply, bdea) =>
+                    {
+                        result = SerializePayload(reply);
+                    }).Wait(30000);
+                    break;                   
+
+                case "updateopenissue":
+                    this.SMQActor.UpdateOpenIssue(payload, (reply, bdea) =>
+                    {
+                        result = SerializePayload(reply);
+                    }).Wait(30000);
+                    break;                   
+
+                case "deleteopenissue":
+                    this.SMQActor.DeleteOpenIssue(payload, (reply, bdea) =>
                     {
                         result = SerializePayload(reply);
                     }).Wait(30000);
@@ -687,6 +823,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - HostInitials");
                     sb.AppendLine($"CRUD      - HostName");
                     sb.AppendLine($"CRUD      - Role");
+                    sb.AppendLine($"CRUD      - HostAvatar");
                 
             
         }
@@ -714,6 +851,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - HostInitials");
                     sb.AppendLine($"CRUD      - HostName");
                     sb.AppendLine($"CRUD      - Role");
+                    sb.AppendLine($"CRUD      - HostAvatar");
                 
             
         }
@@ -741,11 +879,74 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - HostInitials");
                     sb.AppendLine($"CRUD      - HostName");
                     sb.AppendLine($"CRUD      - Role");
+                    sb.AppendLine($"CRUD      - HostAvatar");
                 
             
         }
         
         public void PrintDeleteEpisodeHostHelp(StringBuilder sb)
+        {
+            
+        }
+        
+        public void PrintAddFallacyHelp(StringBuilder sb)
+        {
+            
+                
+                sb.AppendLine();
+                sb.AppendLine($"* * * * * * * * * * * * * * * * * * * * * * * * * * *");
+                sb.AppendLine($"* *  OBJECT DEF: Fallacy     *");
+                sb.AppendLine($"* * * * * * * * * * * * * * * * * * * * * * * * * * *");
+                sb.AppendLine();
+                
+                    sb.AppendLine($"CRUD      - FallacyId");
+                    sb.AppendLine($"CRUD      - fallacy");
+                    sb.AppendLine($"CRUD      - definition");
+                    sb.AppendLine($"CRUD      - example");
+                    sb.AppendLine($"CRUD      - notes");
+                
+            
+        }
+        
+        public void PrintGetFallaciesHelp(StringBuilder sb)
+        {
+            
+                
+                sb.AppendLine();
+                sb.AppendLine($"* * * * * * * * * * * * * * * * * * * * * * * * * * *");
+                sb.AppendLine($"* *  OBJECT DEF: Fallacy     *");
+                sb.AppendLine($"* * * * * * * * * * * * * * * * * * * * * * * * * * *");
+                sb.AppendLine();
+                
+                    sb.AppendLine($"CRUD      - FallacyId");
+                    sb.AppendLine($"CRUD      - fallacy");
+                    sb.AppendLine($"CRUD      - definition");
+                    sb.AppendLine($"CRUD      - example");
+                    sb.AppendLine($"CRUD      - notes");
+                
+            
+        }
+        
+        public void PrintUpdateFallacyHelp(StringBuilder sb)
+        {
+            
+                
+                sb.AppendLine();
+                sb.AppendLine($"* * * * * * * * * * * * * * * * * * * * * * * * * * *");
+                sb.AppendLine($"* *  OBJECT DEF: Fallacy     *");
+                sb.AppendLine($"* * * * * * * * * * * * * * * * * * * * * * * * * * *");
+                sb.AppendLine();
+                
+                    sb.AppendLine($"CRUD      - FallacyId");
+                    sb.AppendLine($"CRUD      - fallacy");
+                    sb.AppendLine($"CRUD      - definition");
+                    sb.AppendLine($"CRUD      - example");
+                    sb.AppendLine($"CRUD      - notes");
+                
+            
+        }
+        
+        public void PrintDeleteFallacyHelp(StringBuilder sb)
         {
             
         }
@@ -769,6 +970,8 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - Topic");
                     sb.AppendLine($"CRUD      - CallParticipants");
                     sb.AppendLine($"CRUD      - CallParticipant");
+                    sb.AppendLine($"CRUD      - CallParticipantAvatar");
+                    sb.AppendLine($"CRUD      - CallParticipantDisplayName");
                 
             
         }
@@ -792,6 +995,8 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - Topic");
                     sb.AppendLine($"CRUD      - CallParticipants");
                     sb.AppendLine($"CRUD      - CallParticipant");
+                    sb.AppendLine($"CRUD      - CallParticipantAvatar");
+                    sb.AppendLine($"CRUD      - CallParticipantDisplayName");
                 
             
         }
@@ -815,6 +1020,8 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - Topic");
                     sb.AppendLine($"CRUD      - CallParticipants");
                     sb.AppendLine($"CRUD      - CallParticipant");
+                    sb.AppendLine($"CRUD      - CallParticipantAvatar");
+                    sb.AppendLine($"CRUD      - CallParticipantDisplayName");
                 
             
         }
@@ -851,6 +1058,11 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - CallStartTime");
                     sb.AppendLine($"CRUD      - CreatedTime");
                     sb.AppendLine($"CRUD      - Timstamp");
+                    sb.AppendLine($"CRUD      - EpisodeCalls");
+                    sb.AppendLine($"CRUD      - CallParticipantDisplayNames");
+                    sb.AppendLine($"CRUD      - CallParticipantsDisplayNames");
+                    sb.AppendLine($"CRUD      - CallParticipantDisplayName");
+                    sb.AppendLine($"CRUD      - CallParticipantAvatar");
                 
             
         }
@@ -882,6 +1094,11 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - CallStartTime");
                     sb.AppendLine($"CRUD      - CreatedTime");
                     sb.AppendLine($"CRUD      - Timstamp");
+                    sb.AppendLine($"CRUD      - EpisodeCalls");
+                    sb.AppendLine($"CRUD      - CallParticipantDisplayNames");
+                    sb.AppendLine($"CRUD      - CallParticipantsDisplayNames");
+                    sb.AppendLine($"CRUD      - CallParticipantDisplayName");
+                    sb.AppendLine($"CRUD      - CallParticipantAvatar");
                 
             
         }
@@ -913,6 +1130,11 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - CallStartTime");
                     sb.AppendLine($"CRUD      - CreatedTime");
                     sb.AppendLine($"CRUD      - Timstamp");
+                    sb.AppendLine($"CRUD      - EpisodeCalls");
+                    sb.AppendLine($"CRUD      - CallParticipantDisplayNames");
+                    sb.AppendLine($"CRUD      - CallParticipantsDisplayNames");
+                    sb.AppendLine($"CRUD      - CallParticipantDisplayName");
+                    sb.AppendLine($"CRUD      - CallParticipantAvatar");
                 
             
         }
@@ -948,6 +1170,16 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - CallStartTime");
                     sb.AppendLine($"CRUD      - EpisodeShowName");
                     sb.AppendLine($"CRUD      - EpisodeShow");
+                    sb.AppendLine($"CRUD      - SeasonEpisodeName");
+                    sb.AppendLine($"CRUD      - CurrentParticipant");
+                    sb.AppendLine($"CRUD      - CurrentTopic");
+                    sb.AppendLine($"CRUD      - CurrentParticipantName");
+                    sb.AppendLine($"CRUD      - CurrentTopicName");
+                    sb.AppendLine($"CRUD      - CurrentTopicSubject");
+                    sb.AppendLine($"CRUD      - CreatedTime");
+                    sb.AppendLine($"CRUD      - LastModifiedTime");
+                    sb.AppendLine($"CRUD      - CurrentParticipantDisplayName");
+                    sb.AppendLine($"CRUD      - CallParticipantDisplayNames");
                 
             
         }
@@ -978,6 +1210,16 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - CallStartTime");
                     sb.AppendLine($"CRUD      - EpisodeShowName");
                     sb.AppendLine($"CRUD      - EpisodeShow");
+                    sb.AppendLine($"CRUD      - SeasonEpisodeName");
+                    sb.AppendLine($"CRUD      - CurrentParticipant");
+                    sb.AppendLine($"CRUD      - CurrentTopic");
+                    sb.AppendLine($"CRUD      - CurrentParticipantName");
+                    sb.AppendLine($"CRUD      - CurrentTopicName");
+                    sb.AppendLine($"CRUD      - CurrentTopicSubject");
+                    sb.AppendLine($"CRUD      - CreatedTime");
+                    sb.AppendLine($"CRUD      - LastModifiedTime");
+                    sb.AppendLine($"CRUD      - CurrentParticipantDisplayName");
+                    sb.AppendLine($"CRUD      - CallParticipantDisplayNames");
                 
             
         }
@@ -1008,11 +1250,86 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - CallStartTime");
                     sb.AppendLine($"CRUD      - EpisodeShowName");
                     sb.AppendLine($"CRUD      - EpisodeShow");
+                    sb.AppendLine($"CRUD      - SeasonEpisodeName");
+                    sb.AppendLine($"CRUD      - CurrentParticipant");
+                    sb.AppendLine($"CRUD      - CurrentTopic");
+                    sb.AppendLine($"CRUD      - CurrentParticipantName");
+                    sb.AppendLine($"CRUD      - CurrentTopicName");
+                    sb.AppendLine($"CRUD      - CurrentTopicSubject");
+                    sb.AppendLine($"CRUD      - CreatedTime");
+                    sb.AppendLine($"CRUD      - LastModifiedTime");
+                    sb.AppendLine($"CRUD      - CurrentParticipantDisplayName");
+                    sb.AppendLine($"CRUD      - CallParticipantDisplayNames");
                 
             
         }
         
         public void PrintDeleteEpisodeCallHelp(StringBuilder sb)
+        {
+            
+        }
+        
+        public void PrintAddOpenIssueHelp(StringBuilder sb)
+        {
+            
+                
+                sb.AppendLine();
+                sb.AppendLine($"* * * * * * * * * * * * * * * * * * * * * * * * * * *");
+                sb.AppendLine($"* *  OBJECT DEF: OpenIssue     *");
+                sb.AppendLine($"* * * * * * * * * * * * * * * * * * * * * * * * * * *");
+                sb.AppendLine();
+                
+                    sb.AppendLine($"CRUD      - OpenIssueId");
+                    sb.AppendLine($"CRUD      - Name");
+                    sb.AppendLine($"CRUD      - Notes");
+                    sb.AppendLine($"CRUD      - Attachments");
+                    sb.AppendLine($"CRUD      - Status");
+                    sb.AppendLine($"CRUD      - Who");
+                
+            
+        }
+        
+        public void PrintGetOpenIssuesHelp(StringBuilder sb)
+        {
+            
+                
+                sb.AppendLine();
+                sb.AppendLine($"* * * * * * * * * * * * * * * * * * * * * * * * * * *");
+                sb.AppendLine($"* *  OBJECT DEF: OpenIssue     *");
+                sb.AppendLine($"* * * * * * * * * * * * * * * * * * * * * * * * * * *");
+                sb.AppendLine();
+                
+                    sb.AppendLine($"CRUD      - OpenIssueId");
+                    sb.AppendLine($"CRUD      - Name");
+                    sb.AppendLine($"CRUD      - Notes");
+                    sb.AppendLine($"CRUD      - Attachments");
+                    sb.AppendLine($"CRUD      - Status");
+                    sb.AppendLine($"CRUD      - Who");
+                
+            
+        }
+        
+        public void PrintUpdateOpenIssueHelp(StringBuilder sb)
+        {
+            
+                
+                sb.AppendLine();
+                sb.AppendLine($"* * * * * * * * * * * * * * * * * * * * * * * * * * *");
+                sb.AppendLine($"* *  OBJECT DEF: OpenIssue     *");
+                sb.AppendLine($"* * * * * * * * * * * * * * * * * * * * * * * * * * *");
+                sb.AppendLine();
+                
+                    sb.AppendLine($"CRUD      - OpenIssueId");
+                    sb.AppendLine($"CRUD      - Name");
+                    sb.AppendLine($"CRUD      - Notes");
+                    sb.AppendLine($"CRUD      - Attachments");
+                    sb.AppendLine($"CRUD      - Status");
+                    sb.AppendLine($"CRUD      - Who");
+                
+            
+        }
+        
+        public void PrintDeleteOpenIssueHelp(StringBuilder sb)
         {
             
         }
@@ -1043,6 +1360,9 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - CallSubject");
                     sb.AppendLine($"CRUD      - SeasonEpisode");
                     sb.AppendLine($"CRUD      - EpisodeShowName");
+                    sb.AppendLine($"CRUD      - Role");
+                    sb.AppendLine($"CRUD      - EpisodeCalls");
+                    sb.AppendLine($"CRUD      - ParticipantAvatar");
                 
             
         }
@@ -1073,6 +1393,9 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - CallSubject");
                     sb.AppendLine($"CRUD      - SeasonEpisode");
                     sb.AppendLine($"CRUD      - EpisodeShowName");
+                    sb.AppendLine($"CRUD      - Role");
+                    sb.AppendLine($"CRUD      - EpisodeCalls");
+                    sb.AppendLine($"CRUD      - ParticipantAvatar");
                 
             
         }
@@ -1103,6 +1426,9 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - CallSubject");
                     sb.AppendLine($"CRUD      - SeasonEpisode");
                     sb.AppendLine($"CRUD      - EpisodeShowName");
+                    sb.AppendLine($"CRUD      - Role");
+                    sb.AppendLine($"CRUD      - EpisodeCalls");
+                    sb.AppendLine($"CRUD      - ParticipantAvatar");
                 
             
         }
@@ -1313,6 +1639,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - LastEpisodeNumber");
                     sb.AppendLine($"CRUD      - NextEpisodeNumber");
                     sb.AppendLine($"CRUD      - CurrentSeasonName");
+                    sb.AppendLine($"CRUD      - Color");
                 
             
         }
@@ -1340,6 +1667,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - LastEpisodeNumber");
                     sb.AppendLine($"CRUD      - NextEpisodeNumber");
                     sb.AppendLine($"CRUD      - CurrentSeasonName");
+                    sb.AppendLine($"CRUD      - Color");
                 
             
         }
@@ -1367,6 +1695,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - LastEpisodeNumber");
                     sb.AppendLine($"CRUD      - NextEpisodeNumber");
                     sb.AppendLine($"CRUD      - CurrentSeasonName");
+                    sb.AppendLine($"CRUD      - Color");
                 
             
         }
@@ -1403,6 +1732,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - ShortName");
                     sb.AppendLine($"CRUD      - EpisodeCallCount");
                     sb.AppendLine($"CRUD      - ShowSeasonId");
+                    sb.AppendLine($"CRUD      - SeasonName");
                 
             
         }
@@ -1434,6 +1764,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - ShortName");
                     sb.AppendLine($"CRUD      - EpisodeCallCount");
                     sb.AppendLine($"CRUD      - ShowSeasonId");
+                    sb.AppendLine($"CRUD      - SeasonName");
                 
             
         }
@@ -1465,6 +1796,7 @@ namespace CLIClassLibrary.RoleHandlers
                     sb.AppendLine($"CRUD      - ShortName");
                     sb.AppendLine($"CRUD      - EpisodeCallCount");
                     sb.AppendLine($"CRUD      - ShowSeasonId");
+                    sb.AppendLine($"CRUD      - SeasonName");
                 
             
         }

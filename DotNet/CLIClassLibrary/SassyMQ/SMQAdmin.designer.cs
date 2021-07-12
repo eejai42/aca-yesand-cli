@@ -147,6 +147,114 @@ namespace YP.SassyMQ.Lib.RabbitMQ
         
         
         /// <summary>
+        /// AddFallacy - 
+        /// </summary>
+        public Task AddFallacy(PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            return this.AddFallacy(this.CreatePayload(), replyHandler, timeoutHandler, waitTimeout);
+        }
+
+        /// <summary>
+        /// AddFallacy - 
+        /// </summary>
+        public Task AddFallacy(String content, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            var payload = this.CreatePayload(content);
+            return this.AddFallacy(payload, replyHandler, timeoutHandler, waitTimeout);
+        }
+    
+        
+        /// <summary>
+        /// AddFallacy - 
+        /// </summary>
+        public Task AddFallacy(StandardPayload payload, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            return this.SendMessage("crudcoordinator.crud.admin.addfallacy", payload, replyHandler, timeoutHandler, waitTimeout);
+        }
+        
+        
+        /// <summary>
+        /// GetFallacies - 
+        /// </summary>
+        public Task GetFallacies(PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            return this.GetFallacies(this.CreatePayload(), replyHandler, timeoutHandler, waitTimeout);
+        }
+
+        /// <summary>
+        /// GetFallacies - 
+        /// </summary>
+        public Task GetFallacies(String content, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            var payload = this.CreatePayload(content);
+            return this.GetFallacies(payload, replyHandler, timeoutHandler, waitTimeout);
+        }
+    
+        
+        /// <summary>
+        /// GetFallacies - 
+        /// </summary>
+        public Task GetFallacies(StandardPayload payload, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            return this.SendMessage("crudcoordinator.crud.admin.getfallacies", payload, replyHandler, timeoutHandler, waitTimeout);
+        }
+        
+        
+        /// <summary>
+        /// UpdateFallacy - 
+        /// </summary>
+        public Task UpdateFallacy(PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            return this.UpdateFallacy(this.CreatePayload(), replyHandler, timeoutHandler, waitTimeout);
+        }
+
+        /// <summary>
+        /// UpdateFallacy - 
+        /// </summary>
+        public Task UpdateFallacy(String content, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            var payload = this.CreatePayload(content);
+            return this.UpdateFallacy(payload, replyHandler, timeoutHandler, waitTimeout);
+        }
+    
+        
+        /// <summary>
+        /// UpdateFallacy - 
+        /// </summary>
+        public Task UpdateFallacy(StandardPayload payload, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            return this.SendMessage("crudcoordinator.crud.admin.updatefallacy", payload, replyHandler, timeoutHandler, waitTimeout);
+        }
+        
+        
+        /// <summary>
+        /// DeleteFallacy - 
+        /// </summary>
+        public Task DeleteFallacy(PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            return this.DeleteFallacy(this.CreatePayload(), replyHandler, timeoutHandler, waitTimeout);
+        }
+
+        /// <summary>
+        /// DeleteFallacy - 
+        /// </summary>
+        public Task DeleteFallacy(String content, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            var payload = this.CreatePayload(content);
+            return this.DeleteFallacy(payload, replyHandler, timeoutHandler, waitTimeout);
+        }
+    
+        
+        /// <summary>
+        /// DeleteFallacy - 
+        /// </summary>
+        public Task DeleteFallacy(StandardPayload payload, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            return this.SendMessage("crudcoordinator.crud.admin.deletefallacy", payload, replyHandler, timeoutHandler, waitTimeout);
+        }
+        
+        
+        /// <summary>
         /// AddTopicAgreement - 
         /// </summary>
         public Task AddTopicAgreement(PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
@@ -467,6 +575,114 @@ namespace YP.SassyMQ.Lib.RabbitMQ
         public Task DeleteEpisodeCall(StandardPayload payload, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
         {
             return this.SendMessage("crudcoordinator.crud.admin.deleteepisodecall", payload, replyHandler, timeoutHandler, waitTimeout);
+        }
+        
+        
+        /// <summary>
+        /// AddOpenIssue - 
+        /// </summary>
+        public Task AddOpenIssue(PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            return this.AddOpenIssue(this.CreatePayload(), replyHandler, timeoutHandler, waitTimeout);
+        }
+
+        /// <summary>
+        /// AddOpenIssue - 
+        /// </summary>
+        public Task AddOpenIssue(String content, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            var payload = this.CreatePayload(content);
+            return this.AddOpenIssue(payload, replyHandler, timeoutHandler, waitTimeout);
+        }
+    
+        
+        /// <summary>
+        /// AddOpenIssue - 
+        /// </summary>
+        public Task AddOpenIssue(StandardPayload payload, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            return this.SendMessage("crudcoordinator.crud.admin.addopenissue", payload, replyHandler, timeoutHandler, waitTimeout);
+        }
+        
+        
+        /// <summary>
+        /// GetOpenIssues - 
+        /// </summary>
+        public Task GetOpenIssues(PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            return this.GetOpenIssues(this.CreatePayload(), replyHandler, timeoutHandler, waitTimeout);
+        }
+
+        /// <summary>
+        /// GetOpenIssues - 
+        /// </summary>
+        public Task GetOpenIssues(String content, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            var payload = this.CreatePayload(content);
+            return this.GetOpenIssues(payload, replyHandler, timeoutHandler, waitTimeout);
+        }
+    
+        
+        /// <summary>
+        /// GetOpenIssues - 
+        /// </summary>
+        public Task GetOpenIssues(StandardPayload payload, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            return this.SendMessage("crudcoordinator.crud.admin.getopenissues", payload, replyHandler, timeoutHandler, waitTimeout);
+        }
+        
+        
+        /// <summary>
+        /// UpdateOpenIssue - 
+        /// </summary>
+        public Task UpdateOpenIssue(PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            return this.UpdateOpenIssue(this.CreatePayload(), replyHandler, timeoutHandler, waitTimeout);
+        }
+
+        /// <summary>
+        /// UpdateOpenIssue - 
+        /// </summary>
+        public Task UpdateOpenIssue(String content, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            var payload = this.CreatePayload(content);
+            return this.UpdateOpenIssue(payload, replyHandler, timeoutHandler, waitTimeout);
+        }
+    
+        
+        /// <summary>
+        /// UpdateOpenIssue - 
+        /// </summary>
+        public Task UpdateOpenIssue(StandardPayload payload, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            return this.SendMessage("crudcoordinator.crud.admin.updateopenissue", payload, replyHandler, timeoutHandler, waitTimeout);
+        }
+        
+        
+        /// <summary>
+        /// DeleteOpenIssue - 
+        /// </summary>
+        public Task DeleteOpenIssue(PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            return this.DeleteOpenIssue(this.CreatePayload(), replyHandler, timeoutHandler, waitTimeout);
+        }
+
+        /// <summary>
+        /// DeleteOpenIssue - 
+        /// </summary>
+        public Task DeleteOpenIssue(String content, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            var payload = this.CreatePayload(content);
+            return this.DeleteOpenIssue(payload, replyHandler, timeoutHandler, waitTimeout);
+        }
+    
+        
+        /// <summary>
+        /// DeleteOpenIssue - 
+        /// </summary>
+        public Task DeleteOpenIssue(StandardPayload payload, PayloadHandler replyHandler = null, PayloadHandler timeoutHandler = null, int waitTimeout = StandardPayload.DEFAULT_TIMEOUT)
+        {
+            return this.SendMessage("crudcoordinator.crud.admin.deleteopenissue", payload, replyHandler, timeoutHandler, waitTimeout);
         }
         
         

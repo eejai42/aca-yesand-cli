@@ -37,13 +37,19 @@ namespace YP.SassyMQ.Lib.RabbitMQ
             this.Content = content;
         }
 
-        // 9 odxml properties
+        // 11 odxml properties
         
         public String EpisodeHostId { get; set; }
         
         public dc.EpisodeHost EpisodeHost { get; set; }
         
         public List<dc.EpisodeHost> EpisodeHosts { get; set; }
+        
+        public String FallacyId { get; set; }
+        
+        public dc.Fallacy Fallacy { get; set; }
+        
+        public List<dc.Fallacy> Fallacies { get; set; }
         
         public String TopicAgreementId { get; set; }
         
@@ -62,6 +68,12 @@ namespace YP.SassyMQ.Lib.RabbitMQ
         public dc.EpisodeCall EpisodeCall { get; set; }
         
         public List<dc.EpisodeCall> EpisodeCalls { get; set; }
+        
+        public String OpenIssueId { get; set; }
+        
+        public dc.OpenIssue OpenIssue { get; set; }
+        
+        public List<dc.OpenIssue> OpenIssues { get; set; }
         
         public String CallParticipantId { get; set; }
         

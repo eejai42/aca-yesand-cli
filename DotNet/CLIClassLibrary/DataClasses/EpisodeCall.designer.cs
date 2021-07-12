@@ -76,6 +76,44 @@ namespace EAPI.CLI.Lib.DataClasses
         [RemoteIsCollection]
         public String EpisodeShow { get; set; }
     
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "SeasonEpisodeName")]
+        [RemoteIsCollection]
+        public String SeasonEpisodeName { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CurrentParticipant")]
+        [RemoteIsCollection]
+        public String CurrentParticipant { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CurrentTopic")]
+        [RemoteIsCollection]
+        public String CurrentTopic { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CurrentParticipantName")]
+        [RemoteIsCollection]
+        public String CurrentParticipantName { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CurrentTopicName")]
+        [RemoteIsCollection]
+        public String CurrentTopicName { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CurrentTopicSubject")]
+        [RemoteIsCollection]
+        public String CurrentTopicSubject { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CreatedTime")]
+        public Nullable<DateTime> CreatedTime { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "LastModifiedTime")]
+        public Nullable<DateTime> LastModifiedTime { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CurrentParticipantDisplayName")]
+        [RemoteIsCollection]
+        public String CurrentParticipantDisplayName { get; set; }
+    
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, PropertyName = "CallParticipantDisplayNames")]
+        [RemoteIsCollection]
+        public String[] CallParticipantDisplayNames { get; set; }
+    
 
         
 
